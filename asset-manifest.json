@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/vlas237/calculator-app/static/css/main.1e3b44cc.css",
+    "main.js": "/vlas237/calculator-app/static/js/main.e701eb76.js",
+    "index.html": "/vlas237/calculator-app/index.html",
+    "main.1e3b44cc.css.map": "/vlas237/calculator-app/static/css/main.1e3b44cc.css.map",
+    "main.e701eb76.js.map": "/vlas237/calculator-app/static/js/main.e701eb76.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1e3b44cc.css",
+    "static/js/main.e701eb76.js"
+  ]
+}
