@@ -28,7 +28,7 @@ const Calculator = () => {
         const newDisplayValue = displayValue + value;
         const operands = newDisplayValue.split(/÷|×|−|\+/);
         const lastOperand = operands[operands.length - 1];
-        if (lastOperand.replace(/[^0-9]/g, '').length <= 10) {
+        if (lastOperand.replace(/[^0-9]/g, '').length <= 12) {
           setDisplayValue(newDisplayValue);
         }
       }
