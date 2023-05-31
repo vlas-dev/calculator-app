@@ -1,3 +1,101 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.body {
+    background-image: url('./assets/background.jpg'); /* Replace with the path to your actual image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Add any other styles you want for the container */
+  }
+
+
+ 
+.box {
+    margin: 0.25em;
+    position: relative;
+    width: 77.6mm;
+    height: 160.7mm;
+    background: #666;
+    border-radius: 50px;
+    box-shadow: 7px 10px 20px rgb(0 0 0 / 1);
+  
+  }
+  
+  
+  
+  .camera {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: radial-gradient(#240fe1,#262c75,#2552c6);
+    border-radius: 50%;
+    top: 27px;
+    opacity: 0.5;
+    left: 170px;
+    z-index: 12;
+  }
+  
+  .inner {
+    position: absolute;
+    inset: 3px;
+    border-radius: 48px;
+    background:black;
+    background-size: cover;
+    background-position: center;
+    border: 10px solid #000;
+    display: flex;
+    justify-content: center;
+    transition: 0.5s;
+  }
+  
+  .btn {
+    position: absolute;
+    top: 110px;
+    left: -2px;
+    width: 3px;
+    height: 26px;
+    background: radial-gradient(#ccc,#666,#222);
+    border-radius: 4px 0 0 4px;
+    z-index: 10;
+  }
+  
+  .btn.btn2{
+    top: 160px;
+    height: 40px;
+  }
+  
+  .btn.btn3{
+    top: 210px;
+    height: 40px;
+  }
+  
+  .btn.rightBtn {
+    top: 170px;
+    height: 70px;
+    left: unset;
+    right: -2px;
+    border-radius: 0 4px 4px 0; 
+  }
+  
+  .island-popup {
+    position: absolute;
+    top: 10px;
+    width: 90px;
+    height: 25px;
+    background: #000;
+    border-radius: 20px;
+    transition: 0.5s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  
+
+  .calculator{
+    width: 80%;
+    height: 80%;
+  }
