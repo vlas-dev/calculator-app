@@ -184,7 +184,7 @@ const Calculator = () => {
             >
               <div>{displayValue || "0"}</div>
             </div>
-            <div className="grid grid-cols-4 gap-3  mx-2">
+            <div className="grid grid-cols-4 gap-3 mx-2">
               <button
                 className="col-span-1 bg-[#9f9f9f] text-black text-2xl w-14 h-14 rounded-full active:bg-[#c4c3c6]"
                 onClick={() => handleClick("AC")}
@@ -282,7 +282,7 @@ const Calculator = () => {
                 +
               </button>
               <button
-                className="col-span-2 bg-[#313131] text-white text-2xl w-31 h-14 rounded-full  active:bg-[#4e4d4e]"
+                className="col-span-2 bg-[#313131] text-white text-2xl  h-14 rounded-full  active:bg-[#4e4d4e] flex flex-col justify-center pl-5"
                 onClick={() => handleClick("0")}
               >
                 0
