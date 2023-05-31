@@ -304,12 +304,14 @@ const Calculator = () => {
 
           <div className="island-popup"></div>
         </div>
-      </div>
-
-      <div className="btn btn1"></div>
+        <div className="btn btn1"></div>
       <div className="btn btn2"></div>
       <div className="btn btn3"></div>
       <div className="btn rightBtn"></div>
+        
+      </div>
+
+     
     </div>
   );
 };
