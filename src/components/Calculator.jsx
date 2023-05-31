@@ -20,10 +20,10 @@ const Calculator = () => {
     } else if (operators.includes(lastChar) && operators.includes(value)) {
       // Replace the last operator with the new one
       setDisplayValue((prevValue) => prevValue.slice(0, -1) + value);
-    } else if (displayValue === 'Syntax ERROR') {
+    } else if (displayValue === 'Invalid') {
       setDisplayValue(value);
     } else {
-      if (displayValue === 'Syntax ERROR') {
+      if (displayValue === 'Invalid') {
         setDisplayValue(value);
       } else {
         let newDisplayValue;
@@ -54,7 +54,7 @@ const Calculator = () => {
       const negatedValue = math.evaluate(`-1 * (${displayValue})`);
       setDisplayValue(String(negatedValue));
     } catch (error) {
-      setDisplayValue('Syntax ERROR');
+      setDisplayValue('Invalid');
     }
   };
 
@@ -63,7 +63,7 @@ const Calculator = () => {
       const percentageValue = math.evaluate(`(${displayValue}) / 100`);
       setDisplayValue(String(percentageValue));
     } catch (error) {
-      setDisplayValue('Syntax ERROR');
+      setDisplayValue('Invalid');
     }
   };
 
@@ -74,7 +74,7 @@ const Calculator = () => {
       const formattedResult = Number(result.toFixed(6)); // Limiting to 6 decimal places
       setDisplayValue(String(formattedResult));
     } catch (error) {
-      setDisplayValue('Syntax ERROR');
+      setDisplayValue('Invalid');
     }
   };
 
@@ -103,6 +103,44 @@ const Calculator = () => {
 
 <div className="camera"></div>
 <div className="inner" >
+
+
+
+<div className="signal-bar">
+<div class="time">9:41</div>
+  <div className="icon-container">
+    {/* Signal icon */}
+    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" fill="white" stroke="none">
+      <rect x="0" y="9" width="3" height="2" rx="1" ry="1" fill="white" />
+      <rect x="8" y="6" width="3" height="5" rx="1" ry="1" fill="white" />
+      <rect x="16" y="3" width="3" height="8" rx="1" ry="1" fill="white" />
+      <rect x="24" y="0" width="3" height="11" rx="1" ry="1" fill="white" />
+    </svg>
+  </div>
+  </div>
+
+
+  <div className="wifi-bar">
+    {/* WiFi icon */}
+    <svg className="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+      <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+      <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+      <line x1="12" y1="20" x2="12" y2="20"></line>
+    </svg>
+  </div>
+
+
+
+<div className="battery-icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 7V17H20V7H4Z"></path>
+    <line x1="23" y1="11" x2="23" y2="13"></line>
+    <rect x="4" y="8" width="14" height="8" rx="1" ry="1" fill="currentColor"></rect>
+  </svg>
+  </div>
+
+
 
 
 
