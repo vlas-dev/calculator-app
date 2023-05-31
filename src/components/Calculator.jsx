@@ -154,115 +154,115 @@ const Calculator = () => {
         </div>
         <div className="grid grid-cols-4 gap-3  mx-2">
           <button
-            className="col-span-1 bg-[#9f9f9f] text-black text-2xl w-14 h-14 rounded-full "
+            className="col-span-1 bg-[#9f9f9f] text-black text-2xl w-14 h-14 rounded-full active:bg-[#c4c3c6]"
             onClick={() => handleClick('AC')}
           >
             AC
           </button>
           <button
-            className="col-span-1 bg-[#9f9f9f] text-black text-2xl w-14 h-14 rounded-full "
+            className="col-span-1 bg-[#9f9f9f] text-black text-2xl w-14 h-14 rounded-full active:bg-[#c4c3c6]"
             onClick={() => handleClick('+/-')}
           >
             +/-
           </button>
           <button
-            className="bg-[#9f9f9f] text-black text-2xl w-14 h-14 rounded-full "
+            className="bg-[#9f9f9f] text-black text-2xl w-14 h-14 rounded-full active:bg-[#c4c3c6]"
             onClick={() => handleClick('%')}
           >
             %
           </button>
           <button
-            className="bg-[#f69906] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full  focus:bg-[#ffb639]"
             onClick={() => handleClick('÷')}
           >
             ÷
           </button>
           <button
-            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full active:bg-[#4e4d4e]"
             onClick={() => handleClick('7')}
           >
             7
           </button>
           <button
-            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
             onClick={() => handleClick('8')}
           >
             8
           </button>
           <button
-            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
             onClick={() => handleClick('9')}
           >
             9
           </button>
           <button
-            className="bg-[#f69906] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full focus:bg-[#ffb639]"
             onClick={() => handleClick('×')}
           >
             ×
           </button>
           <button
-            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
             onClick={() => handleClick('4')}
           >
             4
           </button>
           <button
-            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
             onClick={() => handleClick('5')}
           >
             5
           </button>
           <button
-            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
             onClick={() => handleClick('6')}
           >
             6
           </button>
           <button
-            className="bg-[#f69906] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full  focus:bg-[#ffb639]"
             onClick={() => handleClick('-')}
           >
             −
           </button>
           <button
-            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
             onClick={() => handleClick('1')}
           >
             1
           </button>
           <button
-            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
             onClick={() => handleClick('2')}
           >
             2
           </button>
           <button
-            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
             onClick={() => handleClick('3')}
           >
             3
           </button>
           <button
-            className="bg-[#f69906] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full  focus:bg-[#ffb639]"
             onClick={() => handleClick('+')}
           >
             +
           </button>
           <button
-            className="col-span-2 bg-[#313131] text-white text-2xl w-31 h-14 rounded-full "
+            className="col-span-2 bg-[#313131] text-white text-2xl w-31 h-14 rounded-full  active:bg-[#4e4d4e]"
             onClick={() => handleClick('0')}
           >
             0
           </button>
           <button
-            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full "
+            className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
             onClick={() => handleClick('.')}
           >
             .
           </button>
           <button
-            className="bg-[#f69906] text-white text-3xl w-14 h-14 rounded-full "
+            className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full active:bg-[#ffb639]"
             onClick={calculateResult}
           >
             =

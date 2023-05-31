@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    -webkit-tap-highlight-color: transparent;
+  }
 
 .body {
     background-image: url('./assets/background.jpg'); /* Replace with the path to your actual image */
