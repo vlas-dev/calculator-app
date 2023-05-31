@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import * as math from "mathjs";
 
 const Calculator = () => {
   const [displayValue, setDisplayValue] = useState("0");
+  const [currentTime, setCurrentTime] = useState("");
 
   const handleClick = (value) => {
     const lastChar = displayValue.slice(-1);
@@ -74,13 +75,33 @@ const Calculator = () => {
     }
   };
 
+
+  const updateCurrentTime = () => {
+    const timestamp = Date.now();
+    const date = new Date(timestamp);
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const time = `${hours}:${minutes}`;
+    setCurrentTime(time);
+  };
+
+  useEffect(() => {
+    updateCurrentTime();
+    const interval = setInterval(updateCurrentTime, 60000); // Update every minute
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+
+
   return (
-    <div className="flex justify-center items-center h-screen body">
+    <div className="flex justify-center items-center min-h-screen body">
       <div className="box">
         <div className="camera"></div>
         <div className="inner">
           <div className="signal-bar">
-            <div class="time">9:41</div>
+          <div className="time">{currentTime}</div>
             <div className="icon-container">
               {/* Signal icon */}
               <svg
