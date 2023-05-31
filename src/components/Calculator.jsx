@@ -87,7 +87,7 @@ const Calculator = () => {
 
   useEffect(() => {
     updateCurrentTime();
-    const interval = setInterval(updateCurrentTime, 60000); // Update every minute
+    const interval = setInterval(updateCurrentTime, 1000); // Update every minute
     return () => {
       clearInterval(interval);
     };
