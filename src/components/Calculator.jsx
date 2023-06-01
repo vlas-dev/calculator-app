@@ -36,7 +36,9 @@ const Calculator = () => {
         }
       } else {
         // Add multiply operator if necessary and open parentheses
-        if (lastChar && !operators.includes(lastChar) && lastChar !== "(") {
+        if (displayValue === "0" && value === "(") {
+          setDisplayValue("(");
+        } else if (lastChar && !operators.includes(lastChar) && lastChar !== "(") {
           setDisplayValue((prevValue) => prevValue + "×(");
         } else {
           setDisplayValue((prevValue) => prevValue + "(");
@@ -346,7 +348,7 @@ const Calculator = () => {
                 %
               </button>
               <button
-                className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full  focus:bg-[#ffb639]"
+                className="bg-[#4900ef] text-white text-2xl w-14 h-14 rounded-full focus:bg-[#5d58fd]"
                 onClick={() => handleClick("÷")}
               >
                 ÷
@@ -370,7 +372,7 @@ const Calculator = () => {
                 9
               </button>
               <button
-                className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full focus:bg-[#ffb639]"
+                className="bg-[#4900ef] text-white text-2xl w-14 h-14 rounded-full focus:bg-[#5d58fd]"
                 onClick={() => handleClick("×")}
               >
                 ×
@@ -394,7 +396,7 @@ const Calculator = () => {
                 6
               </button>
               <button
-                className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full  focus:bg-[#ffb639]"
+                className="bg-[#4900ef] text-white text-2xl w-14 h-14 rounded-full focus:bg-[#5d58fd]"
                 onClick={() => handleClick("-")}
               >
                 −
@@ -418,7 +420,7 @@ const Calculator = () => {
                 3
               </button>
               <button
-                className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full  focus:bg-[#ffb639]"
+                className="bg-[#4900ef] text-white text-2xl w-14 h-14 rounded-full focus:bg-[#5d58fd]"
                 onClick={() => handleClick("+")}
               >
                 +
@@ -444,7 +446,7 @@ const Calculator = () => {
               </button>
 
               <button
-                className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full active:bg-[#ffb639]"
+                className="bg-[#4900ef] text-white text-2xl w-14 h-14 rounded-full active:bg-[#5d58fd]"
                 onClick={calculateResult}
               >
                 =
