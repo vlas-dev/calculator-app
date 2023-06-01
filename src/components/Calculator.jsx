@@ -334,10 +334,11 @@ const Calculator = () => {
               </button>
               <button
                 className="col-span-1 bg-[#9f9f9f] text-black text-2xl w-14 h-14 rounded-full active:bg-[#c4c3c6]"
-                onClick={() => handleClick("+/-")}
+                onClick={() => handleClick("(")}
               >
-                +/-
+                ( )
               </button>
+              
               <button
                 className="bg-[#9f9f9f] text-black text-2xl w-14 h-14 rounded-full active:bg-[#c4c3c6]"
                 onClick={() => handleClick("%")}
@@ -424,9 +425,9 @@ const Calculator = () => {
               </button>
               <button
                 className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full active:bg-[#4e4d4e]"
-                onClick={() => handleClick("(")}
+                onClick={() => handleClick("+/-")}
               >
-                ( )
+                +/-
               </button>
               <button
                 className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
