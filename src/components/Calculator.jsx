@@ -1,9 +1,11 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import * as math from "mathjs";
 
 const Calculator = () => {
   const [displayValue, setDisplayValue] = useState("0");
   const [currentTime, setCurrentTime] = useState("");
+  const [parenthesesOpen, setParenthesesOpen] = useState(false);
+  const [parenthesesClosed, setParenthesesClosed] = useState(0);
 
   const handleClick = (value) => {
     const lastChar = displayValue.slice(-1);
@@ -14,30 +16,67 @@ const Calculator = () => {
     } else if (value === "AC") {
       handleClear();
       setDisplayValue("0");
+      setParenthesesOpen(0);
+      setParenthesesClosed(0);
     } else if (value === "+/-") {
       handleNegate();
     } else if (value === "%") {
       handlePercentage();
+    } else if (value === "(") {
+      if (parenthesesOpen > parenthesesClosed) {
+        // Close the parentheses if there's at least one number to the right
+        const operands = displayValue.split(/÷|×|-|\+/);
+        const lastOperand = operands[operands.length - 1];
+        if (lastOperand && lastOperand.replace(/[^0-9]/g, "").length > 0) {
+          setDisplayValue((prevValue) => prevValue + ")");
+          setParenthesesClosed((prevValue) => prevValue + 1);
+        } else {
+          setDisplayValue((prevValue) => prevValue + "(");
+          setParenthesesOpen((prevValue) => prevValue + 1);
+        }
+      } else {
+        // Add multiply operator if necessary and open parentheses
+        if (lastChar && !operators.includes(lastChar) && lastChar !== "(") {
+          setDisplayValue((prevValue) => prevValue + "×(");
+        } else {
+          setDisplayValue((prevValue) => prevValue + "(");
+        }
+        setParenthesesOpen((prevValue) => prevValue + 1);
+      }
+    } else if (value === ")") {
+      if (parenthesesOpen > parenthesesClosed) {
+        // Close the parentheses if there's at least one number to the left
+        const operands = displayValue.split(/÷|×|-|\+/);
+        const lastOperand = operands[operands.length - 1];
+        if (lastOperand && lastOperand.replace(/[^0-9]/g, "").length > 0) {
+          setDisplayValue((prevValue) => prevValue + ")");
+          setParenthesesClosed((prevValue) => prevValue + 1);
+        }
+      }
     } else if (operators.includes(lastChar) && operators.includes(value)) {
       // Replace the last operator with the new one
-      setDisplayValue((prevValue) => prevValue.slice(0, -1) + value);
+      setDisplayValue((prevValue) => {
+        if (prevValue === "0") {
+          return "0" + value; // Append the new operator to the zero
+        } else {
+          return prevValue.slice(0, -1) + value;
+        }
+      });
     } else if (displayValue === "Invalid") {
       setDisplayValue(value);
     } else {
-      if (displayValue === "Invalid") {
-        setDisplayValue(value);
+      let newDisplayValue = displayValue;
+      if (newDisplayValue === "0" && !operators.includes(value)) {
+        // Replace the zero with the new value
+        newDisplayValue = value;
       } else {
-        let newDisplayValue;
-        if (displayValue === "0" && value !== ".") {
-          newDisplayValue = value;
-        } else {
-          newDisplayValue = displayValue + value;
-        }
-        const operands = newDisplayValue.split(/÷|×|-|\+/);
-        const lastOperand = operands[operands.length - 1];
-        if (lastOperand.replace(/[^0-9]/g, "").length <= 11) {
-          setDisplayValue(newDisplayValue);
-        }
+        newDisplayValue += value;
+      }
+
+      const operands = newDisplayValue.split(/÷|×|-|\+/);
+      const lastOperand = operands[operands.length - 1];
+      if (lastOperand.replace(/[^0-9]/g, "").length <= 11) {
+        setDisplayValue(newDisplayValue);
       }
     }
   };
@@ -48,8 +87,34 @@ const Calculator = () => {
 
   const handleNegate = () => {
     try {
-      const negatedValue = math.evaluate(`-1 * (${displayValue})`);
-      setDisplayValue(String(negatedValue));
+      let updatedDisplay = displayValue;
+      let lastNumber = "";
+      const operators = ["÷", "×", "-", "+"];
+
+      // Find the last number in the display
+      for (let i = displayValue.length - 1; i >= 0; i--) {
+        if (operators.includes(displayValue[i])) {
+          break;
+        }
+        lastNumber = displayValue[i] + lastNumber;
+      }
+
+      if (lastNumber !== "") {
+        // Check if the last number already has a minus sign
+        const lastCharIndex = displayValue.lastIndexOf(lastNumber);
+        const hasMinus = displayValue[lastCharIndex - 1] === "-";
+
+        // Toggle the sign of the last number
+        if (hasMinus) {
+          updatedDisplay =
+            displayValue.slice(0, lastCharIndex - 1) + lastNumber;
+        } else {
+          updatedDisplay =
+            displayValue.slice(0, lastCharIndex) + `-${lastNumber}`;
+        }
+      }
+
+      setDisplayValue(updatedDisplay);
     } catch (error) {
       setDisplayValue("Invalid");
     }
@@ -67,6 +132,13 @@ const Calculator = () => {
   const calculateResult = () => {
     try {
       let expression = displayValue.replace(/÷/g, "/").replace(/×/g, "*");
+
+      // Automatically close open parentheses
+      const openParenthesesCount = parenthesesOpen - parenthesesClosed;
+      if (openParenthesesCount > 0) {
+        expression += ")".repeat(openParenthesesCount);
+      }
+
       const result = math.evaluate(expression);
       const formattedResult = Number(result.toFixed(6)); // Limiting to 6 decimal places
       setDisplayValue(String(formattedResult));
@@ -74,7 +146,6 @@ const Calculator = () => {
       setDisplayValue("Invalid");
     }
   };
-
 
   const updateCurrentTime = () => {
     const timestamp = Date.now();
@@ -93,7 +164,56 @@ const Calculator = () => {
     };
   }, []);
 
+  const handleKeyboardInput = (event) => {
+    const { key } = event;
+    const allowedKeys = [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      ".",
+      "+",
+      "-",
+      "*",
+      "/",
+      "(",
+      ")",
+      "%",
+      "Backspace",
+    ];
 
+    if (allowedKeys.includes(key)) {
+      event.preventDefault();
+      if (key === "Backspace") {
+        handleClick("AC"); // Trigger AC (All Clear) when Backspace is pressed
+      } else if (key === "/") {
+        handleClick("÷"); // Trigger ÷ (Divide) when / is pressed
+      } else if (key === "*") {
+        handleClick("×"); // Trigger × (Multiply) when * is pressed
+      } else {
+        handleClick(key);
+      }
+    } else if (key === "=" || key === "Enter") {
+      event.preventDefault();
+      handleClick("=");
+    } else if (key === "Escape") {
+      event.preventDefault();
+      handleClick("AC");
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyboardInput);
+    return () => {
+      document.removeEventListener("keydown", handleKeyboardInput);
+    };
+  });
 
   return (
     <div className="flex justify-center items-center min-h-screen body">
@@ -101,7 +221,7 @@ const Calculator = () => {
         <div className="camera"></div>
         <div className="inner">
           <div className="signal-bar">
-          <div className="time">{currentTime}</div>
+            <div className="time">{currentTime}</div>
             <div className="icon-container">
               {/* Signal icon */}
               <svg
@@ -303,17 +423,25 @@ const Calculator = () => {
                 +
               </button>
               <button
-                className="col-span-2 bg-[#313131] text-white text-2xl  h-14 rounded-full  active:bg-[#4e4d4e] flex flex-col justify-center pl-5"
+                className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full active:bg-[#4e4d4e]"
+                onClick={() => handleClick("(")}
+              >
+                ( )
+              </button>
+              <button
+                className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
                 onClick={() => handleClick("0")}
               >
                 0
               </button>
+
               <button
                 className="bg-[#313131] text-white text-2xl w-14 h-14 rounded-full  active:bg-[#4e4d4e]"
                 onClick={() => handleClick(".")}
               >
                 .
               </button>
+
               <button
                 className="bg-[#f5841b] text-white text-2xl w-14 h-14 rounded-full active:bg-[#ffb639]"
                 onClick={calculateResult}
@@ -326,13 +454,10 @@ const Calculator = () => {
           <div className="island-popup"></div>
         </div>
         <div className="btn btn1"></div>
-      <div className="btn btn2"></div>
-      <div className="btn btn3"></div>
-      <div className="btn rightBtn"></div>
-        
+        <div className="btn btn2"></div>
+        <div className="btn btn3"></div>
+        <div className="btn rightBtn"></div>
       </div>
-
-     
     </div>
   );
 };
