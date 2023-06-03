@@ -329,7 +329,7 @@ const Calculator = () => {
             </div>
             <div className="grid grid-cols-4 gap-3 mx-2">
               <button
-                className="col-span-1 bg-[#9f9f9f] text-black text-2xl w-14 h-14 rounded-full active:bg-[#c4c3c6]"
+                className="col-span-1 bg-[#c30000] text-black text-2xl w-14 h-14 rounded-full active:bg-[#c4c3c6]"
                 onClick={() => handleClick("AC")}
               >
                 AC
