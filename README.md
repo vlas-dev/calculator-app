@@ -24,7 +24,7 @@ To run this project locally, follow these steps:
 
 #### 1. Clone the Repository:
 ```bash
-git clone git@github.com:vlas-dev/vlas-dev.github.io.git
+git clone git@github.com:vlas-dev/calculator-app.git
 cd portfolio
 ```
 #### 2. Install Dependencies:
